@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>To do app in js</h2>
+    <div class="to_do_box">
+        <label> Enter your task</label>
+        <input type="text" id="textBox"/>
+        <button onclick="addTask()">Submit</button>
+    </div>
+    <div class="to_do_list"></div>
+</body>
+<script>
+    let state=[]
+
+    function addTask(){
+        const inputValue=document.getElementById('textBox').value
+        const id=Date.now()
+        const isDone=false
+        state.push({
+            id:id,
+            task:inputValue,
+            isDone:isDone
+        })
+        console.log(state)
+        document.getElementById('textBox').value=''
+        showList()
+    }
+    
+    function showList(){
+        state.map((state)=>{
+        console.log('state',state)
+        const newDiv=document.createElement(`div_${state.id}`)
+        const h3=document.createElement('h3')
+        const textNode=document.createTextNode(state.task)
+        h3.appendChild(textNode)
+        newDiv.appendChild(h3)
+
+        const button=document.createElement('Button')
+        const buttonTextNode=document.createTextNode(state.isDone?'Complete':'Pending')
+        button.appendChild(buttonTextNode)
+        newDiv.appendChild(button)
+
+        document.getElementsByClassName('to_do_list').appendChild('newDiv')
+    })
+    }
+    
+
+</script>
+</html>

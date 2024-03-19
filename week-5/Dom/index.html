@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="button">
+        <!-- <button id="btnid" onclick="increaseCount()">button 1</button> -->
+    </div>
+</body>
+<script>
+    const state={
+        count:0
+    }
+    // function increaseCount(){
+    //     const btnCount=document.getElementById('btnid').innerHTML.split(' ')
+    //     document.getElementById('btnid').innerHTML=btnCount[0]+' '+(Number(btnCount[1])+1)
+    // }
+    function renderButton(){
+        document.getElementById('button').innerHTML=''
+        const component=buttonComponent(state.count)
+        document.getElementById('button').appendChild(component)
+    }
+    function buttonComponent(count){
+        const button=document.createElement('button')
+        button.innerHTML=`Counter ${count}`
+        button.setAttribute('onclick','onButtonPress()')
+        return button
+    }
+    function onButtonPress(){
+        state.count+=1
+        renderButton()
+    }
+
+
+    renderButton()
+</script>
+</html>

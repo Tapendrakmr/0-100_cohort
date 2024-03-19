@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+   function debounce(func,timeout=1000){
+    let timer;
+    return (...args)=>{
+        clearTimeout(timer)
+        timer=setTimeout(()=>{
+            func.apply(this.args)
+        },timeout)
+    }
+   }
+    const debouncePopulateDiv=debounce(()=>populateDiv())
+    function populateDiv(){
+        const a=document.getElementById('firstNumber').value
+        const b=document.getElementById('SecondNumber').value
+        const element=document.getElementById('finalSum')
+        const x=Number(a)+Number(b)
+        console.log(x)
+        element.innerHTML=x
+        
+    }
+    async function  getTodayQuote(){
+        const quoteBody=document.getElementById('quote')
+        quoteBody.innerHTML='Loading...'
+        const res=await fetch('https://api.quotable.io/random')
+        const quote=await res.json()
+        if(quote && quote.content){
+            quoteBody.innerHTML=quote.content
+        }
+    }
+</script>
+<body>
+    <input type="text" id="firstNumber" oninput=debouncePopulateDiv() placeholder="number1"/>
+    <input type="text" id="SecondNumber" oninput=debouncePopulateDiv() placeholder="number2"/>
+    <div id="finalSum"></div>
+    <br/>
+    <button onclick=getTodayQuote()>Get Today Quote</button>
+    <br/><br/>
+    <div id="quote"></div>
+</body>
+</html>
