@@ -38,6 +38,20 @@ app.put('/todo/status/:id',(req,res)=>{
          message:"Todos add successfully"
      })
  })
+ app.get('/todoDetails/:id',(req,res)=>{
+    const id=req.params.id
+    console.log('id',id)
+     const todoIndex=todosList.findIndex(todo=>todo.id==`${id}`)
+    if(todoIndex==-1){
+        return res.json({
+            message:"Todo not found"
+        })
+    }
+     return res.json({
+         data:todosList[todoIndex],
+         message:"Todos detail fetch successfully"
+     })
+ })
  app.delete('/todo/:id',(req,res)=>{
     const id=req.params.id
     todosList=todosList.filter(todo=>todo.id!==id)
