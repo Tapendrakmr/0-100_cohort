@@ -5,6 +5,7 @@ import Profile from './pages/Profile/Profile'
 
 import Home from './pages/Home'
 import BackgroundChanger from './pages/BackgroundChanger/BackgroundChanger'
+import ParaGenerator from './pages/ParaGenerator/ParaGenerator'
 function App() {
 
 
@@ -14,6 +15,7 @@ function App() {
         <Routes>
           <Route  path='/profile' element={<Profile/>}/>
           <Route  path='/backgroundChanger' element={<BackgroundChanger/>}/>
+          <Route  path='/paraGenerator' element={<ParaGenerator/>}/>
           <Route  path='/' element={<Home/>}/>
         </Routes>
       </Router>
